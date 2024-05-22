@@ -1,9 +1,7 @@
 streamlit
 pandas
-sqlite3
 streamlit_authenticator
 bcrypt
-geopy.geocoders
+geopy
 folium
 streamlit_folium
-random
