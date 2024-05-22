@@ -1,0 +1,9 @@
+streamlit
+pandas
+sqlite3
+streamlit_authenticator
+bcrypt
+geopy.geocoders
+folium
+streamlit_folium
+random
