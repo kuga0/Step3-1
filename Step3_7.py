@@ -126,10 +126,10 @@ elif page == "メインページ":
                 conn = sqlite3.connect(db_path)
                 c = conn.cursor()
                 st.write(f"デバッグ: データベースに接続しました。ユーザー名: {username}")
-                c.execute("SELECT * FROM users WHERE username=?", (username,))
+                #c.execute("SELECT * FROM users WHERE username=?", (username,))
                 user_info = c.fetchone()
                 conn.close()
-                st.write(f"デバッグ: SQLクエリを実行しました。結果: {user_info}")
+                #st.write(f"デバッグ: SQLクエリを実行しました。結果: {user_info}")
                 return user_info
             except Exception as e:
                 st.write(f"デバッグ: データベースからのユーザー情報取得に失敗しました。エラー: {e}")
