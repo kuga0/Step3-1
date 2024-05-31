@@ -63,14 +63,14 @@ def get_user_info(username):
     try:
         conn = sqlite3.connect(db_path)
         c = conn.cursor()
-        st.write(f"デバッグ: データベースに接続しました。ユーザー名: {username}")
+        # st.write(f"デバッグ: データベースに接続しました。ユーザー名: {username}")
         c.execute("SELECT * FROM users WHERE username=?", (username,))
         user_info = c.fetchone()
         conn.close()
-        st.write(f"デバッグ: SQLクエリを実行しました。結果: {user_info}")
+        # st.write(f"デバッグ: SQLクエリを実行しました。結果: {user_info}")
         return user_info
     except Exception as e:
-        st.write(f"デバッグ: データベースからのユーザー情報取得に失敗しました。エラー: {e}")
+        st.write(f"データベースからのユーザー情報取得に失敗しました。エラー: {e}")
         return None
 
 # データベースに保存されている全てのユーザー名を取得
@@ -115,10 +115,10 @@ elif page == "メインページ":
     credentials = {"usernames": {}}
     for user in all_users:
         username, password = user
-        st.write(f"デバッグ: ユーザー名: {username}, パスワード: {password}")
+        # st.write(f"デバッグ: ユーザー名: {username}, パスワード: {password}")
         credentials["usernames"][username] = {"name": username, "password": password}
 
-    st.write("デバッグ: 認証情報:", credentials)
+    # st.write("デバッグ: 認証情報:", credentials)
 
     cookie = {
         "name": "some_cookie_name",
@@ -133,7 +133,7 @@ elif page == "メインページ":
         name, authentication_status, username = authenticator.login("main", fields=["ユーザー名", "パスワード"])
 
     if authentication_status:
-        st.write(f"デバッグ: 認証成功。ユーザー名: {username}")
+        # st.write(f"デバッグ: 認証成功。ユーザー名: {username}")
         authenticator.logout("ログアウト", "sidebar")
         
         # メインのタイトル
@@ -141,12 +141,12 @@ elif page == "メインページ":
 
         # デバッグ：データベースに保存されている全てのユーザー名を表示
         all_usernames = get_all_usernames()
-        st.write("デバッグ: データベースに保存されている全てのユーザー名:", all_usernames)
+        # st.write("デバッグ: データベースに保存されている全てのユーザー名:", all_usernames)
 
         # ログインユーザーの情報をデータベースから取得
         user_info = get_user_info(username)
         if user_info:
-            st.write("ユーザー情報を取得しました:", user_info)  # デバッグ情報を追加
+            # st.write("ユーザー情報を取得しました:", user_info)  # デバッグ情報を追加
             gender = user_info[2]
             age = user_info[3]
             income = user_info[4]
@@ -183,7 +183,7 @@ elif page == "メインページ":
         # SQLiteデータベースに接続
         try:
             conn = sqlite3.connect(real_estate_db_path)
-            st.write("データベースに接続しました。")
+            #st.write("データベースに接続しました。")
         except Exception as e:
             st.write(f"データベース接続エラー: {e}")
 
@@ -191,7 +191,7 @@ elif page == "メインページ":
         try:
             query = "SELECT 名称, カテゴリ, アドレス, アクセス, 築年数, 構造, 階数, 家賃, 管理費, 敷金, 礼金, 間取り, 面積, 物件詳細URL, 物件画像URL, 区 FROM properties"
             df = pd.read_sql_query(query, conn)
-            st.write("データの取得に成功しました。")
+            #st.write("データの取得に成功しました。")
         except Exception as e:
             st.write(f"データ取得エラー: {e}")
 
@@ -287,3 +287,4 @@ elif page == "メインページ":
         st.error("ユーザー名またはパスワードが正しくありません")
     elif authentication_status == None:
         st.warning("認証情報を入力してください")
+
